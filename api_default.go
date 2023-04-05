@@ -1,4 +1,3 @@
-
 /*
  * Directory Insights API
  *
@@ -24,19 +23,21 @@ var (
 )
 
 type DefaultApiService service
+
 /*
 DefaultApiService Count Events
 Query the API for a count of matching events #### Sample Request &#x60;&#x60;&#x60; curl -X POST &#x27;https://api.jumpcloud.com/insights/directory/v1/events/count&#x27; -H &#x27;Content-Type: application/json&#x27; -H &#x27;x-api-key: REPLACE_KEY_VALUE&#x27; --data &#x27;{\&quot;service\&quot;: [\&quot;all\&quot;], \&quot;start_time\&quot;: \&quot;2021-07-14T23:00:00Z\&quot;, \&quot;end_time\&quot;: \&quot;2021-07-28T14:00:00Z\&quot;, \&quot;sort\&quot;: \&quot;DESC\&quot;, \&quot;fields\&quot;: [\&quot;timestamp\&quot;, \&quot;event_type\&quot;, \&quot;initiated_by\&quot;, \&quot;success\&quot;, \&quot;client_ip\&quot;, \&quot;provider\&quot;, \&quot;organization\&quot;]}&#x27; &#x60;&#x60;&#x60;
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param body JSON event query body
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param body JSON event query body
+
 @return EventCount
 */
 func (a *DefaultApiService) EventCountGet(ctx context.Context, body EventQuery) (EventCount, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue EventCount
 	)
 
@@ -76,7 +77,7 @@ func (a *DefaultApiService) EventCountGet(ctx context.Context, body EventQuery) 
 				key = auth.Key
 			}
 			localVarHeaderParams["x-api-key"] = key
-			
+
 		}
 	}
 	if ctx != nil {
@@ -89,7 +90,7 @@ func (a *DefaultApiService) EventCountGet(ctx context.Context, body EventQuery) 
 				key = auth.Key
 			}
 			localVarHeaderParams["x-org-id"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -110,45 +111,47 @@ func (a *DefaultApiService) EventCountGet(ctx context.Context, body EventQuery) 
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v EventCount
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 DefaultApiService Query event distinct field values
 Query the API for a list of distinct values for a field #### Sample Request &#x60;&#x60;&#x60; curl -X POST &#x27;https://api.jumpcloud.com/insights/directory/v1/events/distinct&#x27; -H &#x27;Content-Type: application/json&#x27; -H &#x27;x-api-key: REPLACE_KEY_VALUE&#x27; --data &#x27;{\&quot;service\&quot;: [\&quot;all\&quot;], \&quot;start_time\&quot;: \&quot;2021-07-14T23:00:00Z\&quot;, \&quot;end_time\&quot;: \&quot;2021-07-28T14:00:00Z\&quot;, \&quot;sort\&quot;: \&quot;DESC\&quot;, \&quot;field\&quot;: \&quot;event_type\&quot;}&#x27; &#x60;&#x60;&#x60;
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param body JSON event distinct query body
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param body JSON event distinct query body
+
 @return InlineResponse200
 */
 func (a *DefaultApiService) EventDistinctGet(ctx context.Context, body EventDistinctQuery) (InlineResponse200, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue InlineResponse200
 	)
 
@@ -188,7 +191,7 @@ func (a *DefaultApiService) EventDistinctGet(ctx context.Context, body EventDist
 				key = auth.Key
 			}
 			localVarHeaderParams["x-api-key"] = key
-			
+
 		}
 	}
 	if ctx != nil {
@@ -201,7 +204,7 @@ func (a *DefaultApiService) EventDistinctGet(ctx context.Context, body EventDist
 				key = auth.Key
 			}
 			localVarHeaderParams["x-org-id"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -222,45 +225,48 @@ func (a *DefaultApiService) EventDistinctGet(ctx context.Context, body EventDist
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v InlineResponse200
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 DefaultApiService Query Events
 Query the API for Directory Insights events #### Sample Request &#x60;&#x60;&#x60; curl -X POST &#x27;https://api.jumpcloud.com/insights/directory/v1/events&#x27; -H &#x27;Content-Type: application/json&#x27; -H &#x27;x-api-key: REPLACE_KEY_VALUE&#x27; --data &#x27;{\&quot;service\&quot;: [\&quot;all\&quot;], \&quot;start_time\&quot;: \&quot;2021-07-14T23:00:00Z\&quot;, \&quot;end_time\&quot;: \&quot;2021-07-28T14:00:00Z\&quot;, \&quot;sort\&quot;: \&quot;DESC\&quot;, \&quot;fields\&quot;: [\&quot;timestamp\&quot;, \&quot;event_type\&quot;, \&quot;initiated_by\&quot;, \&quot;success\&quot;, \&quot;client_ip\&quot;, \&quot;provider\&quot;, \&quot;organization\&quot;]}&#x27; &#x60;&#x60;&#x60;
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param body JSON event query body
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param body JSON event query body
+
 @return []ModelMap
 */
 func (a *DefaultApiService) EventGet(ctx context.Context, body EventQuery) ([]ModelMap, *http.Response, error) {
+	type ModelMap map[string]interface{}
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue []ModelMap
 	)
 
@@ -300,7 +306,7 @@ func (a *DefaultApiService) EventGet(ctx context.Context, body EventQuery) ([]Mo
 				key = auth.Key
 			}
 			localVarHeaderParams["x-api-key"] = key
-			
+
 		}
 	}
 	if ctx != nil {
@@ -313,7 +319,7 @@ func (a *DefaultApiService) EventGet(ctx context.Context, body EventQuery) ([]Mo
 				key = auth.Key
 			}
 			localVarHeaderParams["x-org-id"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -334,45 +340,47 @@ func (a *DefaultApiService) EventGet(ctx context.Context, body EventQuery) ([]Mo
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []ModelMap
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
+
 /*
 DefaultApiService Query event counts by bucketed by a time interval
 Query the API for a list of counts by time interval #### Sample Request &#x60;&#x60;&#x60; curl -X POST &#x27;https://api.jumpcloud.com/insights/directory/v1/events/interval&#x27; -H &#x27;Content-Type: application/json&#x27; -H &#x27;x-api-key: REPLACE_KEY_VALUE&#x27; --data &#x27;{\&quot;service\&quot;: [\&quot;all\&quot;], \&quot;start_time\&quot;: \&quot;2021-07-14T23:00:00Z\&quot;, \&quot;end_time\&quot;: \&quot;2021-07-28T14:00:00Z\&quot;, \&quot;timezone\&quot;: \&quot;-0500\&quot;, \&quot;interval_unit\&quot;: \&quot;h\&quot;, \&quot;interval_value\&quot;: \&quot;2\&quot;}&#x27; &#x60;&#x60;&#x60;
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param body JSON event interval query body
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param body JSON event interval query body
+
 @return InlineResponse2001
 */
 func (a *DefaultApiService) EventIntervalGet(ctx context.Context, body EventIntervalQuery) (InlineResponse2001, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue InlineResponse2001
 	)
 
@@ -412,7 +420,7 @@ func (a *DefaultApiService) EventIntervalGet(ctx context.Context, body EventInte
 				key = auth.Key
 			}
 			localVarHeaderParams["x-api-key"] = key
-			
+
 		}
 	}
 	if ctx != nil {
@@ -425,7 +433,7 @@ func (a *DefaultApiService) EventIntervalGet(ctx context.Context, body EventInte
 				key = auth.Key
 			}
 			localVarHeaderParams["x-org-id"] = key
-			
+
 		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -446,26 +454,26 @@ func (a *DefaultApiService) EventIntervalGet(ctx context.Context, body EventInte
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
 			var v InlineResponse2001
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
