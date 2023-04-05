@@ -351,7 +351,7 @@ func (a *DefaultApiService) EventGet(ctx context.Context, body EventQuery) ([]ma
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v []ModelMap
+			var v []map[string]interface{}
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

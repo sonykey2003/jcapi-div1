@@ -13,5 +13,5 @@ package swagger
 type SearchTerm struct {
 	And *map[string]interface{} `json:"and,omitempty"`
 	Not *map[string]interface{} `json:"not,omitempty"`
-	Or *map[string]interface{} `json:"or,omitempty"
+	Or  *map[string]interface{} `json:"or,omitempty"`
 }
