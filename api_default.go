@@ -260,14 +260,13 @@ Query the API for Directory Insights events #### Sample Request &#x60;&#x60;&#x6
 
 @return []ModelMap
 */
-func (a *DefaultApiService) EventGet(ctx context.Context, body EventQuery) ([]ModelMap, *http.Response, error) {
-	type ModelMap map[string]interface{}
+func (a *DefaultApiService) EventGet(ctx context.Context, body EventQuery) ([]map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue []ModelMap
+		localVarReturnValue []map[string]interface{}
 	)
 
 	// create path and map variables
